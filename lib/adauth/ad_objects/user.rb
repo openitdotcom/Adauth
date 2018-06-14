@@ -60,6 +60,23 @@ module Adauth
               group.modify([[:delete, :member, @ldap_object.dn]])
             end
             
+            def cn_nested_groups
+			  @cngroups_nested = cn_groups
+              cn_groups.each do |group|
+			    Adauth.logger.info("cn_nested_groups") { "getting parents of #{group}" }
+		        ado = Adauth::AdObjects::Group.where('name', group).first
+                if ado
+                  groups = ado.cn_groups.reject { |c| c.empty? } rescue []
+                  groups = Adauth::AdObjects.convert_to_objects groups rescue []
+                  groups.each do |g|
+					Adauth.logger.info("cn_nested_groups") { "Adding #{g} to the nested groups" }
+                    @cngroups_nested.push g if !(@cngroups_nested.include?(g))
+                   end
+                end
+              end
+			  return  @cngroups_nested
+			end
+            
             private
             
             def microsoft_encode_password(password)

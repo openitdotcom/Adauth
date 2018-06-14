@@ -8,7 +8,7 @@ module Adauth
             if Adauth::AdObjects::User.authenticate(username, password)
                 user = Adauth::AdObjects::User.where('sAMAccountName', username).first
                 if allowed_to_login(user)
-                    Adauth.logger.info("authentication") { "Authentication succesful" }
+                    Adauth.logger.info("authentication") { "Authentication successful" }
                     return user
                 else
                     Adauth.logger.info("authentication") { "Authentication failed (not in allowed group or ou)" }

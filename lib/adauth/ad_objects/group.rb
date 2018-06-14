@@ -19,7 +19,7 @@ module Adauth
                     :name => :samaccountname,
                     :cn_members => [ :member,
                         Proc.new {|g| g.sub(/.*?CN=(.*?),.*/, '\1').to_s} ],
-                    :memberof => :member
+                    :memberof => :memberof
                 }
             
             # Object Net::LDAP filter

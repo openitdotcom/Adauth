@@ -29,6 +29,13 @@ module Adauth
     # Yields a new config object and then sets it as the Adauth Config
     def self.configure
         @logger ||= Logger.new('log/adauth.log', 'weekly')
+		
+		logger.progname = 'Adauth'
+		# Format the log for adauth.log
+		logger.formatter = proc do |severity, datetime, progname, msg|
+			"#{datetime}: #{msg} \n"
+		end
+		
         @logger.info('load') { "Loading new config" }
         @connection = nil
         @config = Config.new

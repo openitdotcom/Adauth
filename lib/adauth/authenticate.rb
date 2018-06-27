@@ -33,7 +33,7 @@ module Adauth
           results = user_connection.search(filter: search_filter)
           user = Adauth::AdObjects::User.new(results[0])
           if allowed_to_login(user)
-            Adauth.logger.info("authentication") { "Authentication succesful" }
+            Adauth.logger.info("authentication") { "Authentication successful" }
             return user
           else
             Adauth.logger.info("authentication") { "Authentication failed (not in allowed group or ou)" }

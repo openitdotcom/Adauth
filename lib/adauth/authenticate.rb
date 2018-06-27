@@ -15,9 +15,9 @@ module Adauth
                     return false
                 end
             end
-        rescue RuntimeError
-            Adauth.logger.info("authentication") { "Authentication failed (RuntimeError)" }
-            return false
+        rescue RuntimeError => e
+            Adauth.logger.info("authentication") { "Authentication failed (#{e})" }
+            return "#{e}"
         end
     end
 
@@ -40,9 +40,9 @@ module Adauth
             return false
           end
         end
-      rescue RuntimeError
-        Adauth.logger.info("authentication") { "Authentication failed (RuntimeError)" }
-        return false
+      rescue RuntimeError => e
+        Adauth.logger.info("authentication") { "Authentication failed (#{e})" }
+        return "#{e}"
       end
     end
 

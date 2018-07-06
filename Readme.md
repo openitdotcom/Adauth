@@ -58,7 +58,7 @@ Which adds a couple of routes, a sessions controller and a login form. To login 
 
 To use Adauth in a script or other program just call `Adauth.configure` somewhere at the begining of the script, once configured Adauth can be used anywhere in your program the same as rails.
 
-## Configuring
+## Configuration
 
 Adauth has a few configuration options which are described in detail on the [wiki](https://github.com/Arcath/Adauth/wiki/Configuring).
 
